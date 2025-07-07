@@ -13,16 +13,16 @@ namespace Infrastructure.Services
 {
     public class BankAccountService : IBankAccountService
     {
-        private readonly IBankAccountRepository iaccountRepository;
+        private readonly IBankAccountRepository _accountRepository;
 
         public BankAccountService(IBankAccountRepository accountRepository)
         {
-            iaccountRepository = accountRepository;
+            _accountRepository = accountRepository;
         }
 
         public async Task<IEnumerable<BankAccountDto>> GetAllAsync()
         {
-            var accounts = await iaccountRepository.GetAllAsync();
+            var accounts = await _accountRepository.GetAllAsync();
             return accounts.Select(a => new BankAccountDto
             {
                 Id = a.Id,
@@ -36,7 +36,7 @@ namespace Infrastructure.Services
 
         public async Task<BankAccountDto?> GetByIdAsync(int id)
         {
-            var account = await iaccountRepository.GetByIdAsync(id);
+            var account = await _accountRepository.GetByIdAsync(id);
             if (account == null) return null;
 
             return new BankAccountDto
@@ -62,7 +62,7 @@ namespace Infrastructure.Services
                 UserId = dto.UserId
             };
 
-            var created = await iaccountRepository.AddAsync(account);
+            var created = await _accountRepository.AddAsync(account);
 
             return new BankAccountDto
             {
@@ -77,7 +77,7 @@ namespace Infrastructure.Services
 
         public async Task<bool> UpdateAsync(int id, CreateBankAccountDto dto)
         {
-            var account = await iaccountRepository.GetByIdAsync(id);
+            var account = await _accountRepository.GetByIdAsync(id);
             if (account == null) return false;
 
             account.AccountNumber = dto.AccountNumber;
@@ -86,12 +86,12 @@ namespace Infrastructure.Services
             account.CurrencyId = dto.CurrencyId;
             account.UserId = dto.UserId;
 
-            return await iaccountRepository.UpdateAsync(account);
+            return await _accountRepository.UpdateAsync(account);
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            return await iaccountRepository.DeleteAsync(id);
+            return await _accountRepository.DeleteAsync(id);
         }
     }
 }
