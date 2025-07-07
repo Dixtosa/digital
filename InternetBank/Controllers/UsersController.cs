@@ -9,48 +9,48 @@ namespace InternetBank.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserService iuserService;
+        private readonly IUserService userService;
 
         public UsersController(IUserService userService)
         {
-            iuserService = userService;
+            this.userService = userService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll() => Ok(await iuserService.GetAllAsync());
+        public async Task<IActionResult> GetAll() => Ok(await userService.GetAllAsync());
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await iuserService.GetByIdAsync(id);
+            var result = await userService.GetByIdAsync(id);
             return result == null ? NotFound() : Ok(result);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserDto dto)
         {
-            var created = await iuserService.CreateAsync(dto);
+            var created = await userService.CreateAsync(dto);
             return CreatedAtAction(nameof(Get), new { id = created.Id }, created);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, CreateUserDto dto)
         {
-            var success = await iuserService.UpdateAsync(id, dto);
+            var success = await userService.UpdateAsync(id, dto);
             return success ? NoContent() : NotFound();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var success = await iuserService.DeleteAsync(id);
+            var success = await userService.DeleteAsync(id);
             return success ? NoContent() : NotFound();
         }
 
         [HttpGet("initials")]
         public async Task<IActionResult> GetUserInitials(string identifier)
         {
-            var initials = await iuserService.GetUserInitialsAsync(identifier);
+            var initials = await userService.GetUserInitialsAsync(identifier);
 
             if (string.IsNullOrEmpty(initials))
                 return NotFound("მომხმარებელი ვერ მოიძებნა");

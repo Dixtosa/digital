@@ -14,7 +14,7 @@ namespace Core.Interfaces.Repositories
         Task<User> AddAsync(User user);
         Task<bool> UpdateAsync(User user);
         Task<bool> DeleteAsync(int id);
-        Task<string?> GetUserInitialsAsync(string identifier);
+        Task<User?> GetUserBySearchTerm(string identifier);
     }
 }
 

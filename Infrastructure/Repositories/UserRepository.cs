@@ -53,7 +53,7 @@ namespace Infrastructure.Repositories
             return true;
         }
 
-        public async Task<string?> GetUserInitialsAsync(string identifier)
+        public async Task<User?> GetUserBySearchTerm(string identifier)
         {
             var user = await userContext.Users
                 .Include(u => u.Details)
@@ -62,9 +62,7 @@ namespace Infrastructure.Repositories
                     u.Details.Phone == identifier ||
                     userContext.BankAccounts.Any(b => b.AccountNumber == identifier && b.UserId == u.Id));
 
-            if (user == null) return null;
-
-            return $"{user.FirstName} {user.LastName}";
+            return user;
         }
     }
 }

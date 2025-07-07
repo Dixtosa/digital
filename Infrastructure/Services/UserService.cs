@@ -106,7 +106,10 @@ namespace Infrastructure.Services
 
         public async Task<string?> GetUserInitialsAsync(string identifier)
         {
-            return await iuserRepository.GetUserInitialsAsync(identifier);
+            var user = await iuserRepository.GetUserBySearchTerm(identifier);
+            if (user is null) return null;
+
+            return user.FirstName[0].ToString()+". "+ user.LastName[0].ToString() + ".";
         }
     }
 }
