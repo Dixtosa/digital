@@ -16,16 +16,16 @@ namespace Infrastructure.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository iuserRepository;
+        private readonly IUserRepository _userRepository;
 
         public UserService(IUserRepository userRepository)
         {
-            iuserRepository = userRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<IEnumerable<UserDto>> GetAllAsync()
         {
-            var users = await iuserRepository.GetAllAsync();
+            var users = await _userRepository.GetAllAsync();
             return users.Select(u => new UserDto
             {
                 Id = u.Id,
@@ -40,7 +40,7 @@ namespace Infrastructure.Services
 
         public async Task<UserDto?> GetByIdAsync(int id)
         {
-            var user = await iuserRepository.GetByIdAsync(id);
+            var user = await _userRepository.GetByIdAsync(id);
             if (user == null || user.Details == null) return null;
 
             return new UserDto
@@ -71,7 +71,7 @@ namespace Infrastructure.Services
                 }
             };
 
-            var created = await iuserRepository.AddAsync(user);
+            var created = await _userRepository.AddAsync(user);
 
             return new UserDto
             {
@@ -86,7 +86,7 @@ namespace Infrastructure.Services
         }
         public async Task<bool> UpdateAsync(int id, CreateUserDto dto)
         {
-            var existing = await iuserRepository.GetByIdAsync(id);
+            var existing = await _userRepository.GetByIdAsync(id);
             if (existing == null || existing.Details == null) return false;
 
             existing.FirstName = dto.FirstName;
@@ -96,17 +96,17 @@ namespace Infrastructure.Services
             existing.Details.Address = dto.Address;
             existing.Details.DateOfBirth = dto.DateOfBirth;
 
-            return await iuserRepository.UpdateAsync(existing);
+            return await _userRepository.UpdateAsync(existing);
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            return await iuserRepository.DeleteAsync(id);
+            return await _userRepository.DeleteAsync(id);
         }
 
         public async Task<string?> GetUserInitialsAsync(string identifier)
         {
-            var user = await iuserRepository.GetUserBySearchTerm(identifier);
+            var user = await _userRepository.GetUserBySearchTerm(identifier);
             if (user is null) return null;
 
             return user.FirstName[0].ToString()+". "+ user.LastName[0].ToString() + ".";
