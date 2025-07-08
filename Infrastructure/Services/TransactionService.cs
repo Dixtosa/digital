@@ -24,29 +24,23 @@ namespace Infrastructure.Services
             IMapper mapper)
         {
             this.transactionRepository = transactionRepository;
-            accountRepository = accountRepository;
+            this.accountRepository = accountRepository;
             this.mapper = mapper;
         }
 
-        public async Task<TransactionReportDto> GetTransactionReportAsync(TransactionReportDto request)
+        public async Task<TransactionReportResponseDto> GetTransactionReportAsync(TransactionReportRequestDto request)
         {
             List<Core.DBModel.Transactions> transactions;
 
-            if (request.FromAccountId.HasValue)
+            if (request.UserId.HasValue)
             {
-                var accounts = await accountRepository.GetByUserIdAsync(request.FromAccountId.Value);
-                var accountIds = accounts.Select(a =>
-                {
-                    return a.Id;
-                }).ToList();
-
-                transactions = await transactionRepository.GetByAccountIdsAndDateRangeAsync(
-                    accountIds, request.FromAccountId, request.ToAccountId);
+                transactions = await transactionRepository.GetByUserIdsAndDateRangeAsync(
+                    request.UserId.Value, request.FromDate, request.ToDate);
             }
-            else if (request.FromAccountId.HasValue)
+            else if (request.AccountId.HasValue)
             {
                 transactions = await transactionRepository.GetByAccountIdsAndDateRangeAsync(
-                    new List<Guid> { request.FromAccountId.Value }, request.FromAccountId, request.ToAccountId);
+                    request.AccountId.Value, request.FromDate, request.ToDate);
             }
             else
             {
@@ -54,16 +48,16 @@ namespace Infrastructure.Services
             }
 
             var income = transactions
-                .Where(t => request.FromAccountId != null && t.ReceiverAccountId == request.ToAccountId)
+                .Where(t => request.UserId != null && t.ReceiverAccountId == request.AccountId)
                          //|| (request.FromAccountId != null && t.ReceiverAccountId?.FromAccountId == request.FromAccountId))
                 .Sum(t => t.Amount);
 
             var outcome = transactions
-                .Where(t => request.FromAccountId != null && t.SenderAccountId == request.FromAccountId)
+                .Where(t => request.UserId != null && t.SenderAccountId == request.UserId)
                          //|| request.FromAccountId != null && t.SenderAccountId?.FromAccountId == request.FromAccountId)
                 .Sum(t => t.Amount);
 
-            return new TransactionReportDto
+            return new TransactionReportResponseDto
             {
                 Transactions = mapper.Map<List<TransactionDto>>(transactions),
                 TotalIncome = income,

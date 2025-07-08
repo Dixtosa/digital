@@ -24,7 +24,7 @@ namespace Infrastructure.Repositories
             return await userContext.Users.Include(u => u.Details).ToListAsync();
         }
 
-        public async Task<User?> GetByIdAsync(int id)
+        public async Task<User?> GetByIdAsync(Guid id)
         {
             return await userContext.Users.Include(u => u.Details).FirstOrDefaultAsync(u => u.Id == id);
         }
@@ -44,7 +44,7 @@ namespace Infrastructure.Repositories
             return true;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var user = await userContext.Users.Include(u => u.Details).FirstOrDefaultAsync(u => u.Id == id);
             if (user == null) return false;

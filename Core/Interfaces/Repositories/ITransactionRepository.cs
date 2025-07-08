@@ -9,7 +9,7 @@ namespace Core.Interfaces.Repositories
 {
     public interface ITransactionRepository
     {
-        Task<List<Transactions>> GetByAccountIdsAndDateRangeAsync(List<Guid> accountIds, DateTime from, DateTime to);
-        Task<List<Transactions>> GetByAccountIdsAndDateRangeAsync(List<Guid> guids, Guid? fromAccountId, Guid? toAccountId);
+        Task<List<Transactions>> GetByUserIdsAndDateRangeAsync(Guid userId, DateTime from, DateTime to);
+        Task<List<Transactions>> GetByAccountIdsAndDateRangeAsync(Guid accountId, DateTime from, DateTime to);
     }
 }

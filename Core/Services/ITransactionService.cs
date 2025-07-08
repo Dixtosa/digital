@@ -9,6 +9,6 @@ namespace Core.Services
 {
     public interface ITransactionService
     {
-        Task<TransactionReportDto> GetTransactionReportAsync(TransactionReportDto request);
+        Task<TransactionReportResponseDto> GetTransactionReportAsync(TransactionReportRequestDto request);
     }
 }

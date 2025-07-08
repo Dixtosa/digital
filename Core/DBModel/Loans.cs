@@ -14,7 +14,7 @@ namespace Core.DBModel
         public decimal LoanAmount { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public virtual BankAccount BankAccount { get; set; }
         public DateTime LoanDate { get; set; }
         public decimal LoanRemainigAmount { get; set; }

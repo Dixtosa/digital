@@ -10,10 +10,10 @@ namespace Core.Interfaces.Repositories
     public interface IUserRepository
     {
         Task<IEnumerable<User>> GetAllAsync();
-        Task<User?> GetByIdAsync(int id);
+        Task<User?> GetByIdAsync(Guid id);
         Task<User> AddAsync(User user);
         Task<bool> UpdateAsync(User user);
-        Task<bool> DeleteAsync(int id);
+        Task<bool> DeleteAsync(Guid id);
         Task<User?> GetUserBySearchTerm(string identifier);
     }
 }

@@ -13,6 +13,6 @@ namespace InternetBank.Models
         public int AccountTypeId { get; set; }
         public decimal Amount { get; set; }
         public int CurrencyId { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
     }
 }

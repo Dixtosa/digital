@@ -20,13 +20,25 @@ namespace Infrastructure.Repositories
         }
 
         public async Task<List<Core.DBModel.Transactions>> GetByAccountIdsAndDateRangeAsync(
-            List<Guid> accountIds, DateTime from, DateTime to)
+            Guid accountId, DateTime from, DateTime to)
         {
             return await trancontext.Transactions
                 .Include(t => t.SenderAccountId)
                 .Include(t => t.ReceiverAccountId)
                 .Where(t =>
-                    (accountIds.Contains(t.SenderAccountId) || accountIds.Contains(t.ReceiverAccountId)) &&
+                    (t.SenderAccountId == accountId) &&
+                    t.Date >= from && t.Date <= to)
+                .ToListAsync();
+        }
+
+        public async Task<List<Core.DBModel.Transactions>> GetByUserIdsAndDateRangeAsync(
+            Guid userId, DateTime from, DateTime to)
+        {
+            return await trancontext.Transactions
+                .Include(t => t.SenderAccountId)
+                .Include(t => t.ReceiverAccountId)
+                .Where(t =>
+                    (t.SenderAccount.UserId == userId) &&
                     t.Date >= from && t.Date <= to)
                 .ToListAsync();
         }

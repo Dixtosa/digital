@@ -8,7 +8,7 @@ namespace InternetBank.Models
 {
     public class CreateCardDto
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public string NameOnCard { get; set; } = null!;
         public string CardNumber { get; set; } = null!;
         public DateTime ValidThru { get; set; }

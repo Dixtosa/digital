@@ -8,7 +8,7 @@ namespace InternetBank.Models
 {
     public class CreateLoanDto
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public decimal LoanAmount { get; set; }
         public int DurationInMonths { get; set; }
     }

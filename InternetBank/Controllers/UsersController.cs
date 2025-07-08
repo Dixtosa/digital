@@ -20,7 +20,7 @@ namespace InternetBank.Controllers
         public async Task<IActionResult> GetAll() => Ok(await userService.GetAllAsync());
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
             var result = await userService.GetByIdAsync(id);
             return result == null ? NotFound() : Ok(result);
@@ -34,14 +34,14 @@ namespace InternetBank.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, CreateUserDto dto)
+        public async Task<IActionResult> Update(Guid id, CreateUserDto dto)
         {
             var success = await userService.UpdateAsync(id, dto);
             return success ? NoContent() : NotFound();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var success = await userService.DeleteAsync(id);
             return success ? NoContent() : NotFound();

@@ -8,6 +8,6 @@ namespace InternetBank.Models;
 
 public class CreateLoanLimitDto
 {
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
     public decimal Amount { get; set; }
 }

@@ -13,7 +13,7 @@ namespace Core.DBModel
     {
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public int BankAccountId { get; set; }
         public string NameOnCard { get; set; } = null!;
         public string CardNumber { get; set; } = null!;

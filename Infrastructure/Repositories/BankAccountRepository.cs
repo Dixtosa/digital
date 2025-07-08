@@ -63,10 +63,5 @@ namespace Infrastructure.Repositories
             await accountdbContext.SaveChangesAsync();
             return true;
         }
-
-        internal async Task<IEnumerable<object>> GetByUserIdAsync(object value)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

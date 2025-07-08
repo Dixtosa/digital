@@ -18,7 +18,7 @@ namespace InternetBank.Controllers
         }
 
         [HttpPost("report")]
-        public async Task<IActionResult> GetReport([FromBody] TransactionReportDto request)
+        public async Task<IActionResult> GetReport([FromBody] TransactionReportRequestDto request)
         {
             var result = await _transactionService.GetTransactionReportAsync(request);
             return Ok(result);

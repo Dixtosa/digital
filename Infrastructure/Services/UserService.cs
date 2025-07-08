@@ -38,7 +38,7 @@ namespace Infrastructure.Services
             });
         }
 
-        public async Task<UserDto?> GetByIdAsync(int id)
+        public async Task<UserDto?> GetByIdAsync(Guid id)
         {
             var user = await _userRepository.GetByIdAsync(id);
             if (user == null || user.Details == null) return null;
@@ -84,7 +84,7 @@ namespace Infrastructure.Services
                 DateOfBirth = created.Details?.DateOfBirth
             };
         }
-        public async Task<bool> UpdateAsync(int id, CreateUserDto dto)
+        public async Task<bool> UpdateAsync(Guid id, CreateUserDto dto)
         {
             var existing = await _userRepository.GetByIdAsync(id);
             if (existing == null || existing.Details == null) return false;
@@ -99,7 +99,7 @@ namespace Infrastructure.Services
             return await _userRepository.UpdateAsync(existing);
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             return await _userRepository.DeleteAsync(id);
         }

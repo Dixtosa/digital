@@ -9,7 +9,7 @@ namespace InternetBank.Models
     public class LoanDto
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public decimal LoanAmount { get; set; }
         public decimal LoanRemainingAmount { get; set; }
         public decimal MonthlyPaymentAmount { get; set; }

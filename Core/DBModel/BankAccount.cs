@@ -16,7 +16,7 @@ namespace Core.DBModel
     public int AccountTypeId { get; set; }
     public decimal Amount { get; set; }
     public int CurrencyId { get; set; }
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
     public int? CardId { get; set; }
     public AccountType AccountType { get; set; } = null!;
     public Currency Currency { get; set; } = null!;
