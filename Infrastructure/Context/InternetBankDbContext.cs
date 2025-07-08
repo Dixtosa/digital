@@ -33,6 +33,7 @@ namespace InternetBank.Models;
         modelBuilder.Entity<User>()
             .HasOne(u => u.Details)
             .WithOne(d => d.User)
+
             .HasForeignKey<UserDetails>(d => d.UserId);
         
         modelBuilder.Entity<BankAccount>()
