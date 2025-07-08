@@ -9,7 +9,7 @@ namespace Core.DBModel
 {
     public class UserDetails
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public string Address { get; set; } = null!;
         public string Phone { get; set; } = null!;

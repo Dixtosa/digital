@@ -10,7 +10,7 @@ namespace Core.DBModel
 
     public class Loans
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public decimal LoanAmount { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

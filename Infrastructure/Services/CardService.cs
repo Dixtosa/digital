@@ -38,11 +38,11 @@ namespace Infrastructure.Services
             };
 
             var createdCard = await icardRepository.AddAsync(card);
-            var currencyMap = new Dictionary<string, int>
+            var currencyMap = new Dictionary<string, Guid>
             {
-                { "GEL", 1 },
-                { "USD", 2 },
-                { "EUR", 3 }
+                { "GEL", Guid.NewGuid() },
+                { "USD", Guid.NewGuid() },
+                { "EUR", Guid.NewGuid() }
             };
 
             var accounts = idefaultCurrencyCodes.Select(code => new BankAccount
@@ -83,7 +83,7 @@ namespace Infrastructure.Services
             });
         }
 
-        public async Task<CardDto?> GetByIdAsync(int id)
+        public async Task<CardDto?> GetByIdAsync(Guid id)
         {
             var card = await icardRepository.GetByIdAsync(id);
             if (card == null) return null;
@@ -99,7 +99,7 @@ namespace Infrastructure.Services
             };
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             return await icardRepository.DeleteAsync(id);
         }

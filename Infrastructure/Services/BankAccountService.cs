@@ -34,7 +34,7 @@ namespace Infrastructure.Services
             });
         }
 
-        public async Task<BankAccountDto?> GetByIdAsync(int id)
+        public async Task<BankAccountDto?> GetByIdAsync(Guid id)
         {
             var account = await _accountRepository.GetByIdAsync(id);
             if (account == null) return null;
@@ -75,7 +75,7 @@ namespace Infrastructure.Services
             };
         }
 
-        public async Task<bool> UpdateAsync(int id, CreateBankAccountDto dto)
+        public async Task<bool> UpdateAsync(Guid id, CreateBankAccountDto dto)
         {
             var account = await _accountRepository.GetByIdAsync(id);
             if (account == null) return false;
@@ -89,7 +89,7 @@ namespace Infrastructure.Services
             return await _accountRepository.UpdateAsync(account);
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             return await _accountRepository.DeleteAsync(id);
         }

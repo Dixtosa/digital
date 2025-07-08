@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InternetBank.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class BankAccountsController : ControllerBase
     {
         private readonly IBankAccountService _accountService;
@@ -18,7 +20,7 @@ namespace InternetBank.Controllers
         public async Task<IActionResult> GetAll() => Ok(await _accountService.GetAllAsync());
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
             var account = await _accountService.GetByIdAsync(id);
             return account == null ? NotFound() : Ok(account);
@@ -32,14 +34,14 @@ namespace InternetBank.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, CreateBankAccountDto dto)
+        public async Task<IActionResult> Update(Guid id, CreateBankAccountDto dto)
         {
             var success = await _accountService.UpdateAsync(id, dto);
             return success ? NoContent() : NotFound();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var success = await _accountService.DeleteAsync(id);
             return success ? NoContent() : NotFound();

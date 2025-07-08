@@ -8,13 +8,13 @@ namespace Core.DBModel
 {
     public class Transactions
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime Date { get; set; }
         public Guid SenderAccountId { get; set; }
         public Guid ReceiverAccountId { get; set; }
         public string ReceiverAccount { get; set; } = null!;
         public decimal Amount { get; set; }
-        public int CurrencyId { get; set; }
+        public Guid CurrencyId { get; set; }
         public string Description { get; set; } = null!;
 
         public BankAccount SenderAccount { get; set; } = null!;

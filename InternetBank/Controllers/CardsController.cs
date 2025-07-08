@@ -31,14 +31,14 @@ namespace InternetBank.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
             var result = await cardService.GetByIdAsync(id);
             return result == null ? NotFound() : Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var success = await cardService.DeleteAsync(id);
             return success ? NoContent() : NotFound();

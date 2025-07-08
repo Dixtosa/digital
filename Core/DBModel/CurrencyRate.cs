@@ -8,9 +8,9 @@ namespace Core.DBModel
 {
     public class CurrencyRate
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime Date { get; set; }
-        public int CurrencyId { get; set; }
+        public Guid CurrencyId { get; set; }
         public decimal Rate { get; set; }
 
         public Currency Currency { get; set; } = null!;

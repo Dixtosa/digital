@@ -9,7 +9,7 @@ namespace InternetBank.Models
     public class CardDto
     {
        
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public string NameOnCard { get; set; } = null!;
         public string CardNumber { get; set; } = null!;

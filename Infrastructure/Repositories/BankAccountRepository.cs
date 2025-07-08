@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Interfaces.Repositories;
 
 namespace Infrastructure.Repositories
 {
@@ -25,7 +24,7 @@ namespace Infrastructure.Repositories
             return await accountdbContext.BankAccounts.ToListAsync();
         }
 
-        public async Task<BankAccount?> GetByIdAsync(int id)
+        public async Task<BankAccount?> GetByIdAsync(Guid id)
         {
             return await accountdbContext.BankAccounts.FindAsync(id);
         }
@@ -53,7 +52,7 @@ namespace Infrastructure.Repositories
             return true;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var account = await accountdbContext.BankAccounts.FindAsync(id);
             if (account == null)

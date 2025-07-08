@@ -11,7 +11,7 @@ namespace Core.Services
     {
         Task<CardDto> CreateAsync(CreateCardDto dto);
         Task<IEnumerable<CardDto>> GetAllAsync();
-        Task<CardDto?> GetByIdAsync(int id);
-        Task<bool> DeleteAsync(int id);
+        Task<CardDto?> GetByIdAsync(Guid id);
+        Task<bool> DeleteAsync(Guid id);
     }
 }

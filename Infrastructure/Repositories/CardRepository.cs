@@ -31,12 +31,12 @@ namespace Infrastructure.Repositories
             return await _dbContext.Cards.ToListAsync();
         }
 
-        public async Task<Card?> GetByIdAsync(int id)
+        public async Task<Card?> GetByIdAsync(Guid id)
         {
             return await _dbContext.Cards.FindAsync(id);
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var card = await _dbContext.Cards.FindAsync(id);
             if (card == null) return false;

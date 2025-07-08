@@ -10,9 +10,9 @@ namespace Core.Services
     public interface IBankAccountService
     {
         Task<IEnumerable<BankAccountDto>> GetAllAsync();
-        Task<BankAccountDto?> GetByIdAsync(int id);
+        Task<BankAccountDto?> GetByIdAsync(Guid id);
         Task<BankAccountDto> CreateAsync(CreateBankAccountDto dto);
-        Task<bool> UpdateAsync(int id, CreateBankAccountDto dto);
-        Task<bool> DeleteAsync(int id);
+        Task<bool> UpdateAsync(Guid id, CreateBankAccountDto dto);
+        Task<bool> DeleteAsync(Guid id);
     }
 }

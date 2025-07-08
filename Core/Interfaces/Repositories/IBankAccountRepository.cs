@@ -10,10 +10,10 @@ namespace Core.Interfaces.Repositories
     public interface IBankAccountRepository
     {
         Task<IEnumerable<BankAccount>> GetAllAsync();
-        Task<BankAccount?> GetByIdAsync(int id);
+        Task<BankAccount?> GetByIdAsync(Guid id);
         Task<BankAccount> AddAsync(BankAccount account);
         Task AddMultipleAsync(IEnumerable<BankAccount> accounts);
         Task<bool> UpdateAsync(BankAccount account);
-        Task<bool> DeleteAsync(int id);
+        Task<bool> DeleteAsync(Guid id);
     }
 }

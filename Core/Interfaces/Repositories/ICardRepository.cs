@@ -11,7 +11,7 @@ namespace Core.Interfaces.Repositories
     {
         Task<Card> AddAsync(Card card);
         Task<IEnumerable<Card>> GetAllAsync();
-        Task<Card?> GetByIdAsync(int id);
-        Task<bool> DeleteAsync(int id);
+        Task<Card?> GetByIdAsync(Guid id);
+        Task<bool> DeleteAsync(Guid id);
     }
 }
