@@ -13,14 +13,12 @@ namespace Core.DBModel
         public Guid Id { get; set; }
         public DateTime CreatedAt { get; set; }
         public Guid UserId { get; set; }
-        public Guid BankAccountId { get; set; }
         public string NameOnCard { get; set; } = null!;
         public string CardNumber { get; set; } = null!;
         public DateTime ValidThru { get; set; }
         public string CVV { get; set; } = null!;
 
         public User User { get; set; } = null!;
-        public BankAccount BankAccount { get; set; } = null!;
     }
 
 }

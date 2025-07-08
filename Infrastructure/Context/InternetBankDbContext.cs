@@ -34,6 +34,11 @@ namespace InternetBank.Models;
             .HasOne(u => u.Details)
             .WithOne(d => d.User)
             .HasForeignKey<UserDetails>(d => d.UserId);
+        
+        modelBuilder.Entity<BankAccount>()
+            .HasOne(u => u.AccountType)
+            .WithMany()
+            .HasForeignKey(d => d.AccountTypeId);
 
         modelBuilder.Entity<BankAccount>()
             .HasMany(b => b.SentTransactions)
@@ -48,8 +53,6 @@ namespace InternetBank.Models;
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<BankAccount>()
-            .HasOne(b => b.Card)
-            .WithOne(c => c.BankAccount)
-            .HasForeignKey<Card>(c => c.BankAccountId);
+            .HasOne(b => b.Card);
     }
 }

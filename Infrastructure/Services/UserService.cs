@@ -41,7 +41,7 @@ namespace Infrastructure.Services
         public async Task<UserDto?> GetByIdAsync(Guid id)
         {
             var user = await _userRepository.GetByIdAsync(id);
-            if (user == null || user.Details == null) return null;
+            if (user == null) return null;
 
             return new UserDto
             {
@@ -49,9 +49,9 @@ namespace Infrastructure.Services
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 PersonalNumber = user.PersonalNumber,
-                Phone = user.Details.Phone,
-                Address = user.Details.Address,
-                DateOfBirth = user.Details.DateOfBirth
+                Phone = user.Details?.Phone,
+                Address = user.Details?.Address,
+                DateOfBirth = user.Details?.DateOfBirth
             };
         }
 

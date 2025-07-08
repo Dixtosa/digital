@@ -9,7 +9,7 @@ namespace Core.DBModel
 {
     public class AccountType
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; } = null!;
 
         public ICollection<BankAccount> BankAccounts { get; set; } = new List<BankAccount>();
