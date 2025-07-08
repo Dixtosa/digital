@@ -10,8 +10,8 @@ namespace Core.DBModel
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public Guid SenderAccountId { get; set; }
-        public Guid ReceiverAccountId { get; set; }
+        public int SenderAccountId { get; set; }
+        public int ReceiverAccountId { get; set; }
         public string ReceiverAccount { get; set; } = null!;
         public decimal Amount { get; set; }
         public int CurrencyId { get; set; }

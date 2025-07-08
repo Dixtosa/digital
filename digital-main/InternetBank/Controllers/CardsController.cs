@@ -13,7 +13,7 @@ namespace InternetBank.Controllers
 
         public CardsController(ICardService cardService)
         {
-            this.cardService = cardService;
+            cardService = cardService;
         }
 
         [HttpPost]

@@ -17,17 +17,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<InternetBankDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("InternetBankContext")));
 builder.Services.AddScoped<ILoanLimitRepository, LoanLimitRepository>();
-builder.Services.AddScoped<IBankAccountRepository, BankAccountRepository>();
-builder.Services.AddScoped<ICardRepository, CardRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 builder.Services.AddScoped<ILoanLimitService, LoanLimitService>();
 builder.Services.AddScoped<ILoanService, LoanService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ICardService, CardService>();
-builder.Services.AddScoped<IBankAccountService, BankAccountService>();
 var app = builder.Build();
 
-
+// Dependency Injection for Services
+builder.Services.AddScoped<IUserService, UserService>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

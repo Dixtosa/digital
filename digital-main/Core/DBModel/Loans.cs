@@ -19,7 +19,7 @@ namespace Core.DBModel
         public DateTime LoanDate { get; set; }
         public decimal LoanRemainigAmount { get; set; }
         public decimal MonthlyPaymentAmount { get; set; }
-        public Guid BankAccountId { get; set; }
+        public object BankAccountId { get; set; }
     }
 
 }

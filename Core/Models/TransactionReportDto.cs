@@ -8,9 +8,13 @@ namespace InternetBank.Models
 {
     public class TransactionReportDto
     {
-        public List<TransactionDto> Transactions { get; set; } = [];
-        public decimal TotalIncome { get; set; }
-        public decimal TotalExpense { get; set; }
-        public decimal NetAmount { get; set; }
+       
+        public Guid Id { get; set; }
+        public Guid? FromAccountId { get; set; }
+        public Guid? ToAccountId { get; set; }
+        public decimal Amount { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string Description { get; set; }
     }
 }
+

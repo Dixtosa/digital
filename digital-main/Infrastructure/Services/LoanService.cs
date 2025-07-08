@@ -77,8 +77,8 @@ namespace Infrastructure.Services
                 var transaction = new Transactions
                 {
                     Date = DateTime.UtcNow,
-                    SenderAccountId = deductions.First().BankAccountId,
-                    ReceiverAccountId = (Guid)loan.BankAccountId,
+                    SenderAccountId = deductions.First().account.Id,
+                    ReceiverAccountId = (int)loan.BankAccountId,
                     ReceiverAccount = loan.BankAccount.AccountNumber,
                     Amount = required,
                     CurrencyId = loan.BankAccount.CurrencyId,
