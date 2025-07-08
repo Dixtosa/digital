@@ -37,7 +37,7 @@ namespace InternetBank.Models;
         
         modelBuilder.Entity<BankAccount>()
             .HasOne(u => u.AccountType)
-            .WithMany()
+            .WithMany(t => t.BankAccounts)
             .HasForeignKey(d => d.AccountTypeId);
 
         modelBuilder.Entity<BankAccount>()
